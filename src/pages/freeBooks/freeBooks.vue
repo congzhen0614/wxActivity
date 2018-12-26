@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="free-book-head">
-      <h2 class="free-book-title">主标题名称主标题名称主标题名称主标题名称主标题名</h2>
-      <p class="free-book-subhead">副标题名称副标题名称副标题名称副标题名称副标题名称副标题名称副标题名称副标题名称副标题名称副标题名称</p>
+      <h2 class="free-book-title">阅读成就精彩人生</h2>
+      <p class="free-book-subhead">陈老师：15959098377</p>
     </div>
     <div class="free-book-list">
       <c-book-list></c-book-list>
@@ -32,6 +32,7 @@ export default {
     }
   },
   mounted () {
+    document.title = '“红领巾”图书角'
     window.addEventListener('scroll', () => {
       let scrollTop = document.documentElement.scrollTop
       if (scrollTop > 100) {

@@ -24,7 +24,6 @@ export default {
           this.Toast.warning({title: '至少选择一本图书'})
         }
       } else {
-        console.log()
         if (this.params.provinceid === '' || this.params.cityid === '' || this.params.regionid === '') {
           this.Toast.warning({title: '省、市、区不能为空'})
         } else if (this.params.schoolid === '') {
@@ -39,7 +38,6 @@ export default {
           this.Toast.warning({title: '联系电话不能为空'})
         } else {
           this.$axios.freeBookConfirm(this.params).then(res => {
-            freeBook.selectBookList = []
             freeBook.totalPrice = 0
             freeBook.quantity = 0
             if (res.data.result.status === '0') {
@@ -48,6 +46,7 @@ export default {
                 msg: '您的订单已提交成功，我们将尽快处理，请耐心等待…',
                 buttons: ['知道了']
               }, res => {
+                freeBook.selectBookList = []
                 this.$router.push({
                   path: '/freeBooks'
                 })
@@ -55,12 +54,12 @@ export default {
             } else {
               this.Dialog.alert({
                 title: '提示',
-                msg: '您的订单提交失败，请重新选择商品提交订单…',
+                msg: res.data.result.msg,
                 buttons: ['知道了']
               }, res => {
-                this.$router.push({
-                  path: '/freeBooks'
-                })
+                // this.$router.push({
+                //   path: '/freeBooks'
+                // })
               })
             }
           }, err => {

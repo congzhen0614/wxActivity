@@ -33,12 +33,12 @@
         <img src="../images/link-icon.png" />
       </li>
     </ul>
-    <ul>
+    <ul style="margin-bottom: 50px">
       <li>
-        <input type="text" v-model="form.linkman" placeholder="请填写收货人姓名" />
+        <input type="text" v-model="form.linkman" style="width: 100%" placeholder="请填写收货人姓名" />
       </li>
       <li>
-        <input type="text" v-model="form.linkmobile" placeholder="请填写联系电话" />
+        <input type="text" v-model="form.linkmobile" style="width: 100%" placeholder="请填写手机号" />
       </li>
     </ul>
     <c-footer :type="2" :params="params" :totalPrice="totalPrice" :quantity="quantity"></c-footer>
@@ -153,12 +153,12 @@ export default {
     },
     onSelectRegion () {
       if (this.form.cityid === '') {
-        this.Toast.warning({title: '请先选择所属市'})
+        this.Toast.warning({title: '请先选择所属区'})
       } else {
         this.picker = new Picker({
           data: [this.regionslist],
           selectedIndex: 0,
-          title: '请选择所属市'
+          title: '请选择所属区'
         })
         this.picker.on('picker.select', (selectedVal, selectedIndex) => {
           this.form.regionname = this.regionslist[selectedIndex].text
@@ -251,6 +251,10 @@ export default {
     }
   },
   watch: {
+    'form.cityid' () {
+      this.form.regionname = ''
+      this.form.regionid = ''
+    },
     'form.regionid' (val) {
       this.schoolsList = []
       this.form.schoolname = ''
